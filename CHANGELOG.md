@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Correct gem author metadata to `Daniel Badde`.
+
 ## 0.4.0
 
 Initial public release under the `typesafe-ai-rails` name.

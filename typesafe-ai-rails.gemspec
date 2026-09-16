@@ -5,7 +5,7 @@ require_relative "lib/typesafe/rails/version"
 Gem::Specification.new do |spec|
   spec.name        = "typesafe-ai-rails"
   spec.version     = Typesafe::Rails::VERSION
-  spec.authors     = ["Genie Developments"]
+  spec.authors     = ["Daniel Badde"]
 
   spec.summary     = "Community Rails integration for TypeSafe AI System One."
   spec.description = "Rails configuration, model-aware call/cost telemetry, and fail-closed " \
