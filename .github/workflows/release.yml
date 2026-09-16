@@ -2,14 +2,9 @@ name: Release
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/release.yml"
 
 jobs:
   release:
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[release]')
     runs-on: ubuntu-latest
     permissions:
       contents: write
