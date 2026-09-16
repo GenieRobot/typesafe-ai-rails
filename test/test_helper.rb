@@ -32,11 +32,7 @@ ActiveRecord::Schema.define do
   end
 end
 
-require "typesafe/rails/decision_policy"
-require "typesafe/rails/call_log"
-require "typesafe/rails/result"
-require "typesafe/rails/client"
-require "typesafe/rails/questions"
+require "typesafe-ai-rails"
 
 class RecordingTransport
   attr_reader :requests

@@ -32,7 +32,7 @@ ActiveRecord::Schema.define do
   end
 end
 
-require "typesafe/rails"
+require "typesafe-ai-rails"
 
 client = Typesafe::Rails::Client.new(api_key: api_key, strict_logging: true)
 
