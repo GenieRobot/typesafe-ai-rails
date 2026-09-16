@@ -1,0 +1,31 @@
+name: Live TypeSafe Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/live-smoke.yml"
+      - "test/live_smoke.rb"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: typesafe-live-smoke
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Run live TypeSafe smoke test
+        run: bundle exec ruby -Ilib test/live_smoke.rb

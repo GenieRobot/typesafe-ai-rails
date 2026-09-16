@@ -1,0 +1,30 @@
+class CreateTypesafeRailsTables < ActiveRecord::Migration<%= "[#{ActiveRecord::Migration.current_version}]" %>
+  def change
+    create_table :typesafe_decision_policies do |t|
+      t.string  :decision_type, null: false
+      t.string  :answer_key, null: false, default: "*"
+      t.decimal :confidence_threshold, precision: 3, scale: 2, null: false
+      t.string  :fallback, null: false, default: "surface_to_user"
+      t.boolean :active, null: false, default: true
+
+      t.timestamps
+    end
+    add_index :typesafe_decision_policies, [:decision_type, :answer_key], unique: true
+
+    create_table :typesafe_calls do |t|
+      t.string   :decision_type, null: false
+      t.string   :model
+      t.integer  :input_tokens
+      t.integer  :output_tokens
+      t.decimal  :input_rate, precision: 12, scale: 6
+      t.decimal  :output_rate, precision: 12, scale: 6
+      t.decimal  :cost_usd, precision: 12, scale: 6
+      t.decimal  :latency_ms, precision: 12, scale: 3
+      t.string   :request_id
+      t.datetime :created_at, null: false
+    end
+    add_index :typesafe_calls, :decision_type
+    add_index :typesafe_calls, :created_at
+    add_index :typesafe_calls, :request_id
+  end
+end

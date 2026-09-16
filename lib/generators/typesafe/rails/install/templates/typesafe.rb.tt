@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+Rails.application.config.typesafe.api_key =
+  Rails.application.credentials.dig(:typesafe, :api_key)
+
+Rails.application.config.typesafe.model = "jev-latest"
+Rails.application.config.typesafe.timeout = 10.0
+
+# SDK logging is opt-in. Debug logging includes request/response bodies, which
+# may contain sensitive application state.
+# Rails.application.config.typesafe.logger = Rails.logger
+
+# A telemetry write failure should not make a successful TypeSafe call fail.
+# Set this true when complete accounting is more important than availability.
+Rails.application.config.typesafe.strict_logging = false
+
+# TypeSafe currently prices the Jev family uniformly. Unknown model families
+# are logged with cost_usd = NULL rather than an invented price.
+Rails.application.config.typesafe.pricing = {
+  "jev" => { input_per_mtok: 0.042, output_per_mtok: 0.0 },
+  "jev-latest" => { input_per_mtok: 0.042, output_per_mtok: 0.0 },
+  "jev-1.12" => { input_per_mtok: 0.042, output_per_mtok: 0.0 }
+}
